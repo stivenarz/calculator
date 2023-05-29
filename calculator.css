@@ -10,7 +10,7 @@
     display: flex;
 }
 .section{
-    border: solid 1px wheat;
+    /* border: solid 1px wheat; */
     width: 15%;
 }
 .content{
@@ -19,9 +19,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: auto;
 }
 .publicity{
-    border: solid 1px wheat;
+    /* border: solid 1px wheat; */
     width: 15%;
 }
 .footer{
@@ -35,6 +36,8 @@
     border-radius: 10px;
     width: 400px;
     height: 600px;
+    margin: auto;
+    z-index: 10;
 }
 .title{
     text-align: right;
