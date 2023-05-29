@@ -11,19 +11,24 @@
 }
 .section{
     /* border: solid 1px wheat; */
-    width: 15%;
+    width: 0%;
+    z-index: -1;
+    /* display: none; */
 }
 .content{
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: auto;
+    /* overflow: auto; */
+    z-index: 5;
 }
 .publicity{
     /* border: solid 1px wheat; */
-    width: 15%;
+    width: 0%;
+    z-index: -1;
+    /* display: none */
 }
 .footer{
     height: 5%;
