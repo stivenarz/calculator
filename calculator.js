@@ -134,6 +134,7 @@ function Clear(method) {
   if (method == "all") {
     btnClear.innerText = "AC";
     number = 0;
+    operator = null;
     lastkey = null;
     display.value = 0;
   }
