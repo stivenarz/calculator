@@ -6,15 +6,16 @@ let temp = null;
 const display = document.getElementById("display");
 const btnClear = document.getElementById("kAC");
 
+document.addEventListener("keypress", (key) => {
+  EnterNumber(key.key);
+});
+
 keysNumber = document.getElementsByClassName("key-number");
 Array.from(keysNumber).forEach((key) => {
   key.onclick = (e) => {
     EnterNumber(e.target.value);
+    SetClick(e.target.value);
   };
-});
-
-document.addEventListener("keypress", (key) => {
-  EnterNumber(key.key);
 });
 
 keysOperator = document.getElementsByClassName("key-operator");
@@ -22,6 +23,7 @@ Array.from(keysOperator).forEach((key) => {
   key.onclick = (e) => {
     EnterOperator(e.target.value);
     SetSelected(e.target.value);
+    SetClick(e.target.value);
   };
 });
 
@@ -29,6 +31,7 @@ keysControl = document.getElementsByClassName("key-control");
 Array.from(keysControl).forEach((key) => {
   key.onclick = (e) => {
     EnterControl(e.target.value);
+    SetClick(e.target.value);
   };
 });
 
@@ -56,6 +59,7 @@ function EnterNumber(num) {
   lastkey = "number";
   btnClear.innerText = "C";
   PrintDisplay(num);
+  SetSelected("=");
 }
 
 function EnterOperator(ope) {
@@ -81,17 +85,11 @@ function EnterControl(con) {
   let result;
   switch (con) {
     case "%":
-      switch (operator) {
-        case "+" && number:
-          result = number.mul(Number(display.value)).div(100).toNumber();
-          break;
-        case "-" && number:
-          result = number.mul(Number(display.value)).div(100).toNumber();
-          break;
-        default:
-          let num = new Decimal(display.value);
-          result = num.div(100).toNumber();
-          break;
+      if (operator == "+" || (operator == "-" && number)) {
+        result = number.mul(Number(display.value)).div(100).toNumber();
+      } else {
+        var num = new Decimal(display.value);
+        result = num.div(100).toNumber();
       }
       break;
     case "+/-":
@@ -105,7 +103,6 @@ function EnterControl(con) {
         result = display.value;
       }
       break;
-
     default:
       break;
   }
@@ -146,6 +143,9 @@ function Clear(method) {
   } else if (method == "partial" && btnClear.innerText == "C") {
     display.value = "0";
     btnClear.innerText = "AC";
+    if (operator) {
+      SetSelected(operator);
+    }
   }
 }
 function SetSelected(ope) {
@@ -156,4 +156,10 @@ function SetSelected(ope) {
   if (ope !== "=") {
     document.getElementById(`k${ope}`).classList.add("selected");
   }
+}
+function SetClick(key) {
+    document.getElementById(`k${key}`).classList.add("click");
+    setTimeout(() => {
+      document.getElementById(`k${key}`).classList.remove("click");
+    }, 100);
 }

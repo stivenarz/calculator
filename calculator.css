@@ -39,7 +39,7 @@
 .calculator{
     border: solid 2px black;
     border-radius: 10px;
-    width: 400px;
+    width: 380px;
     height: 600px;
     margin: auto;
     z-index: 10;
@@ -79,6 +79,7 @@
     height: 18%;
     border: solid 1px black;
     font-size: 200%;
+    text-align: center;
     color: white;
     border-radius: 50%;
     margin: 1%;
@@ -87,9 +88,6 @@
     width: 48%;
     /* border-radius: 0px 0px 0px 10px; */
     border-radius: 50px;
-}
-.key-igual{
-    /* border-radius: 0px 0px 10px 0px; */
 }
 .key-number{
     background-color: grey;
@@ -104,7 +102,9 @@
     background-color: white;
     color: orange;
 }
-
+.click{
+    opacity: 50%;
+}
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
 
